@@ -39,7 +39,6 @@ if (!ATLAS_URI) {
     console.error("No ATLAS_URI environment variable has been defined in config.env");
     process.exit(1);
 }
-(0, database_1.connectToDatabase)(ATLAS_URI);
 const app = (0, express_1.default)();
 const port = process.env.PORT || 5200;
 (0, database_1.connectToDatabase)(ATLAS_URI)

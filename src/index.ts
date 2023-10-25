@@ -17,8 +17,6 @@ if (!ATLAS_URI) {
 	process.exit(1);
 }
 
-connectToDatabase(ATLAS_URI);
-
 const app = express();
 const port = process.env.PORT || 5200;
 
