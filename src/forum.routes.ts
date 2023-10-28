@@ -15,6 +15,7 @@ forumRouter.use(express.json());
 forumRouter.get("/", async (_req, res) => {
 	try {
 		const forums = await collections.forums.find({}).toArray();
+
 		res.status(200).send(forums);
 	} catch (error) {
 		res.status(500).send(error.message);
@@ -56,7 +57,12 @@ forumRouter.get("/categoryname/:categoryname/:page", async (req, res) => {
 
 		console.log("page", page, "categoryname", categoryname);
 		let query = {};
-		if (!categoryname || categoryname === "Home" || categoryname === "") {
+		if (
+			!categoryname ||
+			categoryname === "Home" ||
+			categoryname === "All" ||
+			categoryname === ""
+		) {
 			query = {};
 		} else {
 			query = { categories: categoryname };
@@ -68,7 +74,7 @@ forumRouter.get("/categoryname/:categoryname/:page", async (req, res) => {
 			.skip((page - 1) * postsPerPage)
 			.limit(postsPerPage)
 			.toArray();
-
+		delay(1000);
 		res.status(200).send(posts);
 	} catch (error) {
 		res.status(500).send(error.message);

@@ -49,7 +49,7 @@ exports.categoryRouter.get("/", (_req, res) => __awaiter(void 0, void 0, void 0,
             .find({})
             .sort({ order: 1 })
             .toArray();
-        yield delay(2000);
+        yield delay(1000);
         res.status(200).send(categories);
     }
     catch (error) {
@@ -133,5 +133,8 @@ exports.categoryRouter.delete("/:id", (req, res) => __awaiter(void 0, void 0, vo
         console.error(error.message);
         res.status(400).send(error.message);
     }
+}));
+exports.categoryRouter.get("/ver", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).send("Server API Version: 1.0.1");
 }));
 //# sourceMappingURL=category.routes.js.map

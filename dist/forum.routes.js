@@ -90,7 +90,10 @@ exports.forumRouter.get("/categoryname/:categoryname/:page", (req, res) => __awa
         const categoryname = (_d = req === null || req === void 0 ? void 0 : req.params) === null || _d === void 0 ? void 0 : _d.categoryname;
         console.log("page", page, "categoryname", categoryname);
         let query = {};
-        if (!categoryname || categoryname === "Home" || categoryname === "") {
+        if (!categoryname ||
+            categoryname === "Home" ||
+            categoryname === "All" ||
+            categoryname === "") {
             query = {};
         }
         else {
@@ -102,6 +105,7 @@ exports.forumRouter.get("/categoryname/:categoryname/:page", (req, res) => __awa
             .skip((page - 1) * postsPerPage)
             .limit(postsPerPage)
             .toArray();
+        delay(1000);
         res.status(200).send(posts);
     }
     catch (error) {

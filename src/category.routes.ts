@@ -15,7 +15,7 @@ categoryRouter.get("/", async (_req, res) => {
 			.find({})
 			.sort({ order: 1 })
 			.toArray();
-		await delay(2000);
+		await delay(1000);
 		res.status(200).send(categories);
 	} catch (error) {
 		res.status(500).send(error.message);
@@ -93,4 +93,8 @@ categoryRouter.delete("/:id", async (req, res) => {
 		console.error(error.message);
 		res.status(400).send(error.message);
 	}
+});
+
+categoryRouter.get("/ver", async (req, res) => {
+	res.status(200).send("Server API Version: 1.0.1");
 });
