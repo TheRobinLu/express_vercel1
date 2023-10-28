@@ -22,7 +22,7 @@ categoryRouter.get("/", async (_req, res) => {
 	}
 });
 
-categoryRouter.get("/:id", async (req, res) => {
+categoryRouter.get("/id/:id", async (req, res) => {
 	try {
 		const id = req?.params?.id;
 		const query = { _id: new mongodb.ObjectId(id) };
@@ -96,5 +96,5 @@ categoryRouter.delete("/:id", async (req, res) => {
 });
 
 categoryRouter.get("/ver", async (req, res) => {
-	res.status(200).send("Server API Version: 1.0.1");
+	res.status(200).send({ ver: "Server API Version: 1.1.1" });
 });

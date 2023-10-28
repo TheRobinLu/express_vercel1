@@ -56,7 +56,7 @@ exports.categoryRouter.get("/", (_req, res) => __awaiter(void 0, void 0, void 0,
         res.status(500).send(error.message);
     }
 }));
-exports.categoryRouter.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.categoryRouter.get("/id/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     try {
         const id = (_a = req === null || req === void 0 ? void 0 : req.params) === null || _a === void 0 ? void 0 : _a.id;
@@ -135,6 +135,6 @@ exports.categoryRouter.delete("/:id", (req, res) => __awaiter(void 0, void 0, vo
     }
 }));
 exports.categoryRouter.get("/ver", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.status(200).send("Server API Version: 1.0.1");
+    res.status(200).send({ ver: "Server API Version: 1.1.1" });
 }));
 //# sourceMappingURL=category.routes.js.map
