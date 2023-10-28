@@ -6,6 +6,10 @@ export const forumRouter = express.Router();
 
 const postsPerPage = 30;
 
+async function delay(ms: number) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 forumRouter.use(express.json());
 
 forumRouter.get("/", async (_req, res) => {
@@ -25,6 +29,7 @@ forumRouter.get("/page/:page", async (req, res) => {
 			.skip(page * postsPerPage)
 			.limit(postsPerPage)
 			.toArray();
+		await delay(2000);
 		res.status(200).send(forums);
 	} catch (error) {
 		res.status(500).send(error.message);

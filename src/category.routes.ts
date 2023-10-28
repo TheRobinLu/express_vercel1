@@ -2,6 +2,10 @@ import * as express from "express";
 import * as mongodb from "mongodb";
 import { collections } from "./database";
 
+async function delay(ms: number) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export const categoryRouter = express.Router();
 categoryRouter.use(express.json());
 
@@ -11,6 +15,7 @@ categoryRouter.get("/", async (_req, res) => {
 			.find({})
 			.sort({ order: 1 })
 			.toArray();
+		await delay(2000);
 		res.status(200).send(categories);
 	} catch (error) {
 		res.status(500).send(error.message);

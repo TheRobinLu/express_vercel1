@@ -36,6 +36,11 @@ exports.categoryRouter = void 0;
 const express = __importStar(require("express"));
 const mongodb = __importStar(require("mongodb"));
 const database_1 = require("./database");
+function delay(ms) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    });
+}
 exports.categoryRouter = express.Router();
 exports.categoryRouter.use(express.json());
 exports.categoryRouter.get("/", (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -44,6 +49,7 @@ exports.categoryRouter.get("/", (_req, res) => __awaiter(void 0, void 0, void 0,
             .find({})
             .sort({ order: 1 })
             .toArray();
+        yield delay(2000);
         res.status(200).send(categories);
     }
     catch (error) {

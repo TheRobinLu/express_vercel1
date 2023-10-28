@@ -38,6 +38,11 @@ const mongodb = __importStar(require("mongodb"));
 const database_1 = require("./database");
 exports.forumRouter = express.Router();
 const postsPerPage = 30;
+function delay(ms) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    });
+}
 exports.forumRouter.use(express.json());
 exports.forumRouter.get("/", (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -57,6 +62,7 @@ exports.forumRouter.get("/page/:page", (req, res) => __awaiter(void 0, void 0, v
             .skip(page * postsPerPage)
             .limit(postsPerPage)
             .toArray();
+        yield delay(2000);
         res.status(200).send(forums);
     }
     catch (error) {
